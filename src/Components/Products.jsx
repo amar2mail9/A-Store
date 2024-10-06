@@ -12,7 +12,7 @@ export default function Products() {
     setLoading(true);
     setError(null); // Reset error state before fetching
     try {
-      const res = await fetch(`https://dummyjson.com/${typeProducts}`);
+      const res = await fetch(`https://dummyjson.com/${typeProducts}?limit=8`);
       if (!res.ok) throw new Error("Network response was not ok");
       const data = await res.json();
       setProducts(data.products);
