@@ -16,7 +16,7 @@ function App() {
         <Route path="/products" element={<Products01 />} />
         <Route path="/products/:id" element={<Slug />} />{" "}
         {/* Dynamic route for product details */}
-        <Route path="/products/ordersummary" element={<OrderSummary />} />
+        <Route path="/products/order-summary" element={<OrderSummary />} />
         <Route path="*" element={<Error404 />} />
       </Routes>
     </BrowserRouter>
