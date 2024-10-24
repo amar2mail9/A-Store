@@ -33,7 +33,7 @@ function Navbar() {
   ];
   return (
     <>
-      <header className="bg-gray-900 ">
+      <header className="bg-gray-900 sticky top-0 z-50">
         <nav className="flex items-center justify-between lg:w-11/12 w-10/12 mx-auto py-3">
           <div>
             {/* logo */}
