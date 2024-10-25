@@ -72,12 +72,15 @@ export default function CategoryWise() {
                         <del className="text-rose-500 ">
                           {" "}
                           ${items.price.toFixed(2)}
+                          <label className="text-orange-500 ml-1">
+                            {items.discountPercentage}% off
+                          </label>
                         </del>
                         <h4 className=" text-green-500">
                           $
                           {`${(
                             (items.price / 100) *
-                            items.discountPercentage
+                            (100 - items.discountPercentage)
                           ).toFixed(2)} `}
                         </h4>
                       </span>
