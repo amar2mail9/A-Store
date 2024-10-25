@@ -1,11 +1,13 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { FaRegCircleUser } from "react-icons/fa6";
 import { IoMenu, IoSearchOutline } from "react-icons/io5";
-import { LuMenuSquare } from "react-icons/lu";
+import { LuMenuSquare, LuShoppingCart } from "react-icons/lu";
 import { RiCloseLargeFill } from "react-icons/ri";
 import { Link, useLocation } from "react-router-dom";
+import { ProductContext } from "../../App";
 
 function Navbar() {
+  const { numberOfCart } = useContext(ProductContext);
   const [showMenu, setShowMenu] = useState(false);
   const location = useLocation();
 
@@ -73,6 +75,12 @@ function Navbar() {
             <button className="text-gray-100 font-semibold text-2xl lg:hidden  block">
               <IoSearchOutline />
             </button>
+            {/* Shopping cart */}
+            <button className="text-gray-400 flex items-center justify-center  font-semibold text-3xl    ">
+              <LuShoppingCart />{" "}
+              <sup className="text-orange-500">{numberOfCart}</sup>
+            </button>
+
             {/* user icon */}
             <button className="text-orange-200 text-2xl font-semibold ">
               <FaRegCircleUser />

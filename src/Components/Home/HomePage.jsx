@@ -1,8 +1,17 @@
-import React from "react";
+import React, { useContext, useEffect } from "react";
 import Layout from "./Layout";
+import Banner from "../Banner/Banner";
+import HeroSection01 from "../HeroSection/HeroSection01";
+
 
 function HomePage() {
-  return <Layout>HomePage</Layout>;
+  
+  return (
+    <Layout>
+      <Banner />
+      <HeroSection01 />
+    </Layout>
+  );
 }
 
 export default HomePage;
