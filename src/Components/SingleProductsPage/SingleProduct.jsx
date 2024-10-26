@@ -47,9 +47,21 @@ function SingleProduct() {
                 </h1>
                 <div className="mt-4 sm:items-center sm:gap-4 sm:flex">
                   {/* Products Price */}
-                  <p className="text-2xl font-extrabold text-sky-900 sm:text-3xl dark:text-white">
-                    $ {product.price}
-                  </p>
+                  <span>
+                    <del className="text-2xl font-extrabold text-rose-500 sm:text-3xl dark:text-white">
+                      $ {product.price}
+                    </del>
+                    <h5 className="text-rose-400">
+                      {product.discountPercentage}% OFF
+                    </h5>
+                    <h6 className="text-green-600">
+                      $
+                      {(
+                        (product.price / 100) *
+                        (100 - product.discountPercentage)
+                      ).toFixed(2)}
+                    </h6>
+                  </span>
                   {/* Rating */}
                   <div className="flex items-center gap-2 mt-2 sm:mt-0">
                     <div className="flex items-center gap-1">
@@ -121,7 +133,8 @@ function SingleProduct() {
                 )}
                 {product.availabilityStatus && (
                   <p>
-                    <strong>Availability:</strong> {product.availabilityStatus}
+                    <strong>Availability:</strong> {product.availabilityStatus}{" "}
+                    ({product.stock})
                   </p>
                 )}
                 {product.warrantyInformation && (

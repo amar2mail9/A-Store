@@ -7,6 +7,8 @@ import PageNotFound from "./Components/Error/PageNotFound";
 import CategoryWise from "./Components/CategoryWiseShowData/CategoryWise";
 import SingleProduct from "./Components/SingleProductsPage/SingleProduct";
 import { toast, ToastContainer } from "react-toastify";
+
+import ShoppingCart from "./Components/Page/OrderSummery/ShoppingCart";
 export const ProductContext = createContext();
 function App() {
   const [fetchProducts, setFetchProducts] = useState([]);
@@ -76,6 +78,7 @@ function App() {
             element={<CategoryWise />}
           ></Route>
           <Route path="/products/:id" element={<SingleProduct />} />
+          <Route path="/order-summery" element={<ShoppingCart />} />
           <Route path="*" element={<PageNotFound />} />
         </Routes>
         <ToastContainer />

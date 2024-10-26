@@ -76,11 +76,12 @@ function Navbar() {
               <IoSearchOutline />
             </button>
             {/* Shopping cart */}
-            <button className="text-gray-400 flex items-center justify-center  font-semibold text-3xl    ">
-              <LuShoppingCart />{" "}
-              <sup className="text-orange-500">{numberOfCart}</sup>
-            </button>
-
+            <Link to={'/order-summery'}>
+              <button className="text-gray-400 flex items-center justify-center  font-semibold text-3xl    ">
+                <LuShoppingCart />{" "}
+                <sup className="text-orange-500">{numberOfCart}</sup>
+              </button>
+            </Link>
             {/* user icon */}
             <button className="text-orange-200 text-2xl font-semibold ">
               <FaRegCircleUser />
