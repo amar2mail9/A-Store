@@ -18,9 +18,6 @@ export default function HeroSection01() {
     getData.fetchProductsData("products/category/laptops");
   }, []);
 
-  // console.log("Type of smartPhone ", smartphones.length);
-  // console.log("Type of Products ", fetchProducts.length);
-  console.log("Smartphones data: ", smartphones.length);
   return (
     <>
       <motion.div
@@ -29,54 +26,54 @@ export default function HeroSection01() {
         transition={{ duration: 1 }}
       >
         <section className="grid xl:grid-cols-4 lg:grid-cols-3 gap-6  sm:grid-cols-2 grid-cols-1 my-8 items-center w-10/12 mx-auto">
-          <div className="flex items-center gap-6 py-3 px-8 shadow-md rounded-lg bg-white shadow-slate-500">
+          <div className="flex hover:scale-105 duration-300 items-center justify-between gap-6 py-3 px-8 shadow-md rounded-lg bg-white shadow-slate-500">
             <div className="text-green-500">
               <FaShippingFast className="text-5xl" />
             </div>
             <div>
-              <h2 className="lg:text-xl text-lg font-semibold text-gray-600">
+              <h2 className="lg:text-sm text-lg font-semibold text-gray-600">
                 Free Shipping & Return
               </h2>
-              <small className="font-semibold text-gray-600">
-                Free Shipping on of order $99{" "}
+              <small className="font-semibold text-[.6rem] text-gray-600">
+                Free Shipping on of order $99
               </small>
             </div>
           </div>
-          <div className="flex items-center gap-6 py-3 px-8 shadow-md rounded-lg bg-white shadow-slate-500">
+          <div className="flex items-center hover:scale-105 duration-300 justify-between gap-6 py-3 px-8 shadow-md rounded-lg bg-white shadow-slate-500">
             <div className="text-green-500">
               <RiMoneyDollarCircleFill className="text-5xl" />
             </div>
             <div>
-              <h2 className="lg:text-xl text-lg font-semibold text-gray-600">
+              <h2 className="lg:text-sm text-lg font-semibold text-gray-600">
                 Money Back Guarantee
               </h2>
-              <small className="font-semibold text-gray-600">
+              <small className="font-semibold text-[.6rem] text-gray-600">
                 100% Money Back Guarantee
               </small>
             </div>
           </div>
-          <div className="flex items-center gap-6 py-3 px-8 shadow-md rounded-lg bg-white shadow-slate-500">
+          <div className="flex items-center hover:scale-105 duration-300 justify-between gap-6 py-3 px-8 shadow-md rounded-lg bg-white shadow-slate-500">
             <div className="text-green-500">
               <MdSupportAgent className="text-5xl" />
             </div>
             <div>
-              <h2 className="lg:text-xl text-lg font-semibold text-gray-600">
+              <h2 className="lg:text-sm text-lg font-semibold text-gray-600">
                 ONLINE SUPPORT 24/7
               </h2>
-              <small className="font-semibold text-gray-600">
+              <small className="font-semibold text-[.6rem] text-gray-600">
                 Lorem ipsum dolor sit amet
               </small>
             </div>
           </div>
-          <div className="flex items-center gap-6 py-3 px-8 shadow-md rounded-lg bg-white shadow-slate-500">
+          <div className="flex items-center  hover:scale-105 duration-300 justify-between gap-6 py-3 px-8 shadow-md rounded-lg bg-white shadow-slate-500">
             <div className="text-green-500">
               <RiSecurePaymentLine className="text-5xl" />
             </div>
             <div>
-              <h2 className="lg:text-xl text-lg font-semibold text-gray-600">
+              <h2 className="lg:text-sm text-lg font-semibold text-gray-600">
                 SECURE PAYMENT
               </h2>
-              <small className="font-semibold text-gray-600">
+              <small className="font-semibold text-[.6rem] text-gray-600">
                 Lorem ipsum dolor sit amet
               </small>
             </div>
@@ -126,28 +123,32 @@ export default function HeroSection01() {
           </Link>
 
           {/* Beauty */}
-          <Link to={"products/category/beauty"}>
-            <motion.div
-              initial={{ opacity: 0, y: 50 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 1 }}
-              className="flex items-center px-8 gap-8 bg-white shadow-lg shadow-slate-400 py-4 rounded-lg"
-            >
-              <div>
-                <h3 className="text-slate-700 font-semibold text-xl">Beauty</h3>
-                <small className="text-slate-500 font-semibold">
-                  {beauty.length} Products
-                </small>
-              </div>
-              <div className="w-24 h-24">
-                <img
-                  src="https://img.lovepik.com/element/45007/1920.png_860.png"
-                  alt="Beauty"
-                  className="w-full h-full object-cover rounded-lg"
-                />
-              </div>
-            </motion.div>
-          </Link>
+          <div className="hover:scale-105 duration-300 delay-500">
+            <Link to={"products/category/beauty"}>
+              <motion.div
+                initial={{ opacity: 0, y: 50 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 1 }}
+                className="flex items-center px-8  gap-8 bg-white shadow-lg shadow-slate-400 py-4 rounded-lg"
+              >
+                <div>
+                  <h3 className="text-slate-700 font-semibold text-xl">
+                    Beauty
+                  </h3>
+                  <small className="text-slate-500 font-semibold">
+                    {beauty.length} Products
+                  </small>
+                </div>
+                <div className="w-24 h-24">
+                  <img
+                    src="https://img.lovepik.com/element/45007/1920.png_860.png"
+                    alt="Beauty"
+                    className="w-full h-full object-cover rounded-lg"
+                  />
+                </div>
+              </motion.div>
+            </Link>
+          </div>
 
           {/* Furniture */}
           <Link to={"products/category/furniture"}>

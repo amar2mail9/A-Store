@@ -9,6 +9,10 @@ import SingleProduct from "./Components/SingleProductsPage/SingleProduct";
 import { toast, ToastContainer } from "react-toastify";
 
 import ShoppingCart from "./Components/Page/OrderSummery/ShoppingCart";
+import AboutUs from "./Components/Page/Abouts/AboutUs";
+import ContactUs from "./Components/Page/contactus/ContactUs";
+import CategoryPage from "./Components/Page/Categories/CategoryPage";
+import ProductsPage from "./Components/Page/Products/ProductsPage";
 export const ProductContext = createContext();
 function App() {
   const [fetchProducts, setFetchProducts] = useState([]);
@@ -16,6 +20,7 @@ function App() {
   const [beauty, setBeauty] = useState([]);
   const [furniture, setFurniture] = useState([]);
   const [laptops, setLaptops] = useState([]);
+  const [groceries, setGroceries] = useState([]);
 
   // Shopping Value
 
@@ -37,9 +42,11 @@ function App() {
           setFurniture(result.products);
         } else if (url === "products/category/laptops") {
           setLaptops(result.products);
+        } else if (url == "products/category/groceries") {
+          setGroceries(result.products);
         }
       } catch (error) {
-        console.log(error);
+        console.error(error);
       }
     },
     handleClick: function (item) {
@@ -67,6 +74,7 @@ function App() {
         laptops,
         cartValue,
         numberOfCart,
+        groceries,
         handleClick: getData.handleClick,
       }}
     >
@@ -79,6 +87,10 @@ function App() {
           ></Route>
           <Route path="/products/:id" element={<SingleProduct />} />
           <Route path="/order-summery" element={<ShoppingCart />} />
+          <Route path="/about-us" element={<AboutUs />} />
+          <Route path="/contact-us" element={<ContactUs />} />
+          <Route path="/all-products" element={<ProductsPage />} />
+
           <Route path="*" element={<PageNotFound />} />
         </Routes>
         <ToastContainer />

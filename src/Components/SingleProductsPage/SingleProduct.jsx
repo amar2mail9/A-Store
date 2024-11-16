@@ -18,15 +18,16 @@ function SingleProduct() {
       let result = await res.json();
       setProducts(result);
     } catch (error) {
-      console.error(error); // Log or handle the error
+      console.error(error);
     } finally {
-      setIsLoading(false); // Ensure spinner stops on error
+      setIsLoading(false);
     }
   };
 
   useEffect(() => {
     fetchProducts();
   }, [id]);
+
   return (
     <Layout>
       {isLoading ? (
@@ -34,35 +35,36 @@ function SingleProduct() {
           <Spinner variant="warning" />
         </div>
       ) : (
-        <section className="py-8 bg-white my-16 w-11/12 mx-auto rounded-xl shadow-lg md:py-16 dark:bg-indigo-900 antialiased">
+        <section className="py-8 bg-gray-50 my-16 w-11/12 mx-auto rounded-xl shadow-lg md:py-16 antialiased">
           <div className="max-w-screen-xl px-4 mx-auto 2xl:px-0">
             <div className="lg:grid lg:grid-cols-2 lg:gap-8 xl:gap-16">
               <div className="shrink-0 max-w-md lg:max-w-lg mx-auto">
-                <img className="w-full dark:hidden" src={product.thumbnail} />
+                <img
+                  className="w-full rounded-lg"
+                  src={product.thumbnail}
+                  alt={product.title}
+                />
               </div>
               <div className="mt-6 sm:mt-8 lg:mt-0">
-                {/* Products Title */}
-                <h1 className="text-xl font-semibold text-orange-900 sm:text-2xl dark:text-white">
+                <h1 className="text-2xl font-semibold text-gray-800">
                   {product.title}
                 </h1>
                 <div className="mt-4 sm:items-center sm:gap-4 sm:flex">
-                  {/* Products Price */}
                   <span>
-                    <del className="text-2xl font-extrabold text-rose-500 sm:text-3xl dark:text-white">
+                    <del className="text-xl font-extrabold text-red-600">
                       $ {product.price}
                     </del>
-                    <h5 className="text-rose-400">
+                    <h5 className="text-red-500">
                       {product.discountPercentage}% OFF
                     </h5>
                     <h6 className="text-green-600">
-                      $
+                      ${" "}
                       {(
                         (product.price / 100) *
                         (100 - product.discountPercentage)
                       ).toFixed(2)}
                     </h6>
                   </span>
-                  {/* Rating */}
                   <div className="flex items-center gap-2 mt-2 sm:mt-0">
                     <div className="flex items-center gap-1">
                       {[...Array(5)].map((_, index) => (
@@ -81,12 +83,12 @@ function SingleProduct() {
                         </svg>
                       ))}
                     </div>
-                    <p className="text-sm font-medium leading-none text-gray-500 dark:text-gray-400">
+                    <p className="text-sm font-medium leading-none text-gray-500">
                       {product.rating}
                     </p>
                     <Link
                       to="#"
-                      className="text-sm font-medium leading-none text-blue-500 underline hover:no-underline dark:text-white"
+                      className="text-sm font-medium leading-none text-blue-500 underline hover:no-underline"
                     >
                       {product.reviews?.length > 0
                         ? `${product.reviews.length} Reviews`
@@ -94,33 +96,30 @@ function SingleProduct() {
                     </Link>
                   </div>
                 </div>
-                <div className="flex md:flex-row flex-col w-full items-center  md:gap-14 gap-8 my-8">
+                <div className="flex md:flex-row flex-col w-full items-center md:gap-14 gap-8 my-8">
                   <button
                     onClick={() => {
                       handleClick(product);
                     }}
-                    className="flex gap-2 focus:bg-indigo-500 focus:text-indigo-100 hover:bg-orange-200 hover:text-orange-500  justify-center items-center py-2 md:px-8 md:w-fit w-full rounded-lg bg-sky-100 text-sky-500 "
+                    className="flex gap-2 focus:bg-indigo-500 focus:text-indigo-100 hover:bg-orange-400 justify-center items-center py-2 md:px-8 md:w-fit w-full rounded-lg bg-sky-500 text-white"
                   >
                     <TbShoppingCartPlus className="text-2xl" />{" "}
                     <span className="text-lg font-semibold"> Add to cart</span>
                   </button>
-                  <button className="border-2 w-full md:w-fit hover:bg-orange-500 hover:text-orange-100 rounded-lg px-8 py-2 font-lg font-semibold border-orange-500 text-orange-600 bg-orange-100">
+                  <button className="border-2 w-full md:w-fit hover:bg-orange-500 hover:text-white rounded-lg px-8 py-2 font-lg font-semibold border-orange-500 text-orange-600 bg-orange-100">
                     Buy Now
                   </button>
                 </div>
 
-                <hr className=" border-gray-200 dark:border-gray-800" />
-                <p className="mb-6 text-gray-500 dark:text-gray-400">
-                  {product.description}
-                </p>
+                <hr className=" border-gray-200" />
+                <p className="mb-6 text-gray-600">{product.description}</p>
               </div>
             </div>
           </div>
           <hr className="mt-10" />
           <div className="px-8 lg:px-16 md:p-14">
             <div className="grid grid-cols-1 gap-6 lg:grid-cols-4 md:grid-cols-3 sm:grid-cols-2">
-              {/* Additional Details */}
-              <div className="space-y-2 text-indigo-900 dark:text-indigo-900">
+              <div className="space-y-2 text-indigo-900">
                 {product.sku && (
                   <p>
                     <strong>SKU:</strong> {product.sku}
@@ -160,14 +159,13 @@ function SingleProduct() {
                 )}
               </div>
 
-              {/* Dimensions */}
               <div>
                 {product.dimensions && (
                   <div className="mt-4">
-                    <h3 className="text-lg font-semibold text-indigo-700 dark:text-indigo-300">
+                    <h3 className="text-lg font-semibold text-indigo-700">
                       Dimensions
                     </h3>
-                    <ul className="space-y-1 text-indigo-500 dark:text-indigo-400">
+                    <ul className="space-y-1 text-indigo-500">
                       {product.dimensions.width && (
                         <li>
                           <strong>Width:</strong> {product.dimensions.width} cm
@@ -189,14 +187,13 @@ function SingleProduct() {
                 )}
               </div>
 
-              {/* Tags */}
               <div>
                 {product.tags && product.tags.length > 0 && (
                   <div className="mt-4">
-                    <h3 className="text-lg font-semibold text-indigo-700 dark:text-indigo-300">
+                    <h3 className="text-lg font-semibold text-indigo-700">
                       Tags
                     </h3>
-                    <ul className="flex flex-wrap space-x-2 text-indigo-500 dark:text-indigo-400">
+                    <ul className="flex flex-wrap space-x-2 text-indigo-500">
                       {product.tags.map((tag, index) => (
                         <li key={index}>#{tag}</li>
                       ))}
@@ -205,14 +202,13 @@ function SingleProduct() {
                 )}
               </div>
 
-              {/* Reviews */}
               <div>
                 {product.reviews && product.reviews.length > 0 && (
                   <div className="mt-6">
-                    <h3 className="text-lg font-semibold text-indigo-700 dark:text-indigo-300">
+                    <h3 className="text-lg font-semibold text-indigo-700">
                       Reviews
                     </h3>
-                    <ul className="space-y-4 text-indigo-500 dark:text-indigo-400">
+                    <ul className="space-y-4 text-indigo-500">
                       {product.reviews.map((review, index) => (
                         <li
                           key={index}
@@ -231,22 +227,21 @@ function SingleProduct() {
                 )}
               </div>
 
-              {/* Meta Information */}
               <div>
                 {product.meta && (
                   <div className="mt-6">
-                    <h3 className="text-lg font-semibold text-indigo-700 dark:text-indigo-300">
+                    <h3 className="text-lg font-semibold text-indigo-700">
                       Meta Information
                     </h3>
-                    <p className="text-indigo-500 dark:text-indigo-400">
+                    <p className="text-indigo-500">
                       <strong>Created At:</strong>{" "}
                       {new Date(product.meta.createdAt).toLocaleString()}
                     </p>
-                    <p className="text-indigo-500 dark:text-indigo-400">
+                    <p className="text-indigo-500">
                       <strong>Updated At:</strong>{" "}
                       {new Date(product.meta.updatedAt).toLocaleString()}
                     </p>
-                    <p className="text-indigo-500 dark:text-indigo-400">
+                    <p className="text-indigo-500">
                       <strong>Barcode:</strong> {product.meta.barcode}
                     </p>
                     {product.meta.qrCode && (

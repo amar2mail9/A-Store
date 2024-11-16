@@ -16,10 +16,7 @@ export default function CategoryWise() {
       );
       let data = await res.json();
       setProducts(data.products);
-      console.log(data);
-    } catch (error) {
-      console.log(error);
-    }
+    } catch (error) {}
   };
   useEffect(() => {
     fetchData();
