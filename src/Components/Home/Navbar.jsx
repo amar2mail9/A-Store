@@ -126,7 +126,7 @@ function Navbar() {
 
       {/* Small screen menu */}
       {showMenu && (
-        <div className="fixed w-full duration-500">
+        <div className="fixed z-40 w-full duration-500">
           <div className="flex flex-col items-center gap-2 justify-center my-2 mx-4 rounded-md shadow-lg shadow-gray-500 bg-gray-800 text-white font-semibold text-md p-2">
             {menuItems.map((item, index) => {
               const isActive = location.pathname === item.Path;
@@ -134,7 +134,7 @@ function Navbar() {
                 <Link
                   to={item.Path}
                   key={index}
-                  className={`w-full py-1 text-center rounded-md hover:bg-orange-100 hover:text-orange-400 ${
+                  className={`w-full py-1 text-center rounded-md hover:bg-orange-500 hover:text-orange-100 ${
                     isActive ? "text-orange-500 bg-orange-100" : "text-white"
                   }`}
                 >
