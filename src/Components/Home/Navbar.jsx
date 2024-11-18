@@ -10,12 +10,10 @@ function Navbar() {
   // Accessing the number of items in the cart from context
   const { numberOfCart } = useContext(ProductContext);
   const [searchQuery, setSearchQuery] = useState("");
-  const [productsTitle, setProductsTitle] = useState("");
   const [products, setProducts] = useState([]);
   const [searchItemsContainer, setSearchItemsContainer] = useState(false);
   const [showMenu, setShowMenu] = useState(false);
   const location = useLocation();
-
   const [showSearchBox, setShowSearchBox] = useState(false);
 
   // Menu items for navigation
@@ -114,6 +112,10 @@ function Navbar() {
                     product.map((item, index) => (
                       <h3 key={index}>
                         <Link
+                          onClick={() => {
+                            setSearchItemsContainer(false);
+                            setSearchQuery("");
+                          }}
                           to={`/products/${item.id}`}
                           className="text-orange-500 hover:text-sky-500 duration-500 delay-500"
                         >
@@ -176,20 +178,20 @@ function Navbar() {
         </div>
       )}
 
-      {/* Search Box for  small screen */}
+      {/* Search Box for small screen */}
       {showSearchBox && (
-        <div className="fixed lg:hidden block  shadow-xl rounded-lg p-2 w-full z-50 bg-orange-200 duration-300 delay-300">
-          <div className="   py-1   w-11/12 mx-auto">
+        <div className="fixed lg:hidden block shadow-xl rounded-lg p-2 w-full z-50 bg-orange-200 duration-300 delay-300">
+          <div className="py-1 w-11/12 mx-auto">
             <input
               value={searchQuery}
               onChange={handleSearch}
               type="text"
-              className=" w-full px-4 py-1 outline-none text-sm rounded-lg bg-gray-600 text-orange-50 font-semibold    "
+              className="w-full px-4 py-1 outline-none text-sm rounded-lg bg-gray-600 text-orange-50 font-semibold"
               placeholder="Search..."
             />
           </div>
           {searchItemsContainer && (
-            <div className="overflow-y-scroll h-48   scrollbar-none ">
+            <div className="overflow-y-scroll h-48 scrollbar-none">
               {product.length === 0 ? (
                 <h3 className="text-rose-500 text-center">
                   Products Not Available
@@ -198,6 +200,10 @@ function Navbar() {
                 product.map((item, index) => (
                   <h3 key={index}>
                     <Link
+                      onClick={() => {
+                        setShowSearchBox(false);
+                        setSearchQuery("");
+                      }}
                       to={`/products/${item.id}`}
                       className="text-gray-900 hover:text-sky-500 duration-300 delay-300"
                     >

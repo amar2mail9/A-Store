@@ -8,7 +8,7 @@ import CategoryWise from "./Components/CategoryWiseShowData/CategoryWise";
 import SingleProduct from "./Components/SingleProductsPage/SingleProduct";
 import { toast, ToastContainer } from "react-toastify";
 
-import ShoppingCart from "./Components/Page/OrderSummery/ShoppingCart";
+import ShoppingCart from "./Components/Page/ShopingCart/ShoppingCart";
 import AboutUs from "./Components/Page/Abouts/AboutUs";
 import ContactUs from "./Components/Page/contactus/ContactUs";
 import CategoryPage from "./Components/Page/Categories/CategoryPage";
