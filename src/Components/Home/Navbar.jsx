@@ -156,7 +156,7 @@ function Navbar() {
 
       {/* Small Screen Mobile Menu (when toggle is true) */}
       {showMenu && (
-        <div className="fixed z-40 w-full duration-500">
+        <div className="fixed z-40 w-full lg:hidden block duration-500">
           <div className="flex flex-col items-center gap-2 justify-center my-2 mx-4 rounded-md shadow-lg shadow-gray-500 bg-gray-800 text-white font-semibold text-md p-2">
             {menuItems.map((item, index) => {
               const isActive = location.pathname === item.Path;
@@ -178,7 +178,7 @@ function Navbar() {
 
       {/* Search Box for  small screen */}
       {showSearchBox && (
-        <div className="fixed   shadow-xl rounded-lg p-2 w-full z-50 bg-orange-200 duration-300 delay-300">
+        <div className="fixed lg:hidden block  shadow-xl rounded-lg p-2 w-full z-50 bg-orange-200 duration-300 delay-300">
           <div className="   py-1   w-11/12 mx-auto">
             <input
               value={searchQuery}
