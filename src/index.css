@@ -1,3 +1,13 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+/* In your global stylesheet */
+.scrollbar-none::-webkit-scrollbar {
+  display: none; /* Hides the scrollbar */
+}
+
+.scrollbar-none {
+  -ms-overflow-style: none; /* Internet Explorer */
+  scrollbar-width: none; /* Firefox */
+}

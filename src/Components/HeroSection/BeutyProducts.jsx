@@ -37,40 +37,68 @@ export default function BeutyProducts() {
           </div>
         ) : (
           <section>
-            <div className="grid lg:grid-cols-5 md:grid-cols-4 sm:grid-cols-3 grid-cols-2 gap-3">
-              {beauty.map((items, index) => {
-                return (
-                  <motion.div
-                    initial={{ opacity: 0, y: 50 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 1 }}
-                    className="w-full shadow-lg"
-                  >
-                    <Link to={`/products/${items.id}`}>
-                      <div
-                        // style={{
-                        //   boxShadow: "0 0  3px 1px rgba(0,0,0,0.3)",
-                        // }}
-                        key={index}
-                        className=" border-1 hover:scale-105 hover:opacity-80 text-gray-600 bg-white delay-200 duration-200 cursor-pointer border-gray-300 rounded-lg p-2  gap-3"
+            <div className="">
+              <Swiper
+                spaceBetween={40}
+                autoplay={{
+                  delay: 2500,
+                  disableOnInteraction: false,
+                }}
+                modules={[Autoplay]}
+                className="mySwiper "
+                breakpoints={{
+                  320: {
+                    slidesPerView: 2,
+                    spaceBetween: 10,
+                  },
+                  640: {
+                    slidesPerView: 3,
+                    spaceBetween: 15,
+                  },
+                  1024: {
+                    slidesPerView: 4,
+                    spaceBetween: 20,
+                  },
+                  1280: {
+                    slidesPerView: 5,
+                    spaceBetween: 30,
+                  },
+                }}
+              >
+                {beauty.map((items, index) => {
+                  return (
+                    <SwiperSlide key={index}>
+                      <motion.div
+                        initial={{ opacity: 0, y: 50 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        transition={{ duration: 1 }}
+                        className="w-full shadow-lg"
                       >
-                        <div className="w-full mx-auto  bg-gray-200 rounded-lg">
-                          <img
-                            src={items.images}
-                            alt=""
-                            className="w-full h-fit"
-                          />
-                        </div>
-                        <h3>{items.title}</h3>
-                      </div>
-                    </Link>
-                  </motion.div>
-                );
-              })}
+                        {" "}
+                        <Link to={`/products/${items.id}`}>
+                          <div
+                          
+                            className=" border-1 hover:scale-105 hover:opacity-80 text-gray-600 bg-white delay-200 duration-200 cursor-pointer border-gray-300 rounded-lg p-2  gap-3"
+                          >
+                            <div className="w-full mx-auto  bg-gray-200 rounded-lg">
+                              <img
+                                src={items.thumbnail}
+                                alt=""
+                                className="w-full h-fit"
+                              />
+                            </div>
+                            <h3>{items.title}</h3>
+                          </div>
+                        </Link>
+                      </motion.div>
+                    </SwiperSlide>
+                  );
+                })}
+              </Swiper>
             </div>
             <div className="flex my-4 justify-center ">
               <Link
-                to={`products/category/beauty`}
+                to={`products/category/smartphones`}
                 className="text-center bg-orange-500 hover:bg-orange-700 focus:bg-green-500 px-4 py-1 rounded-full text-orange-100"
               >
                 View More
@@ -121,7 +149,7 @@ export default function BeutyProducts() {
               >
                 {smartphones.map((items, index) => {
                   return (
-                    <SwiperSlide>
+                    <SwiperSlide key={index}>
                       <motion.div
                         initial={{ opacity: 0, y: 50 }}
                         whileInView={{ opacity: 1, y: 0 }}
@@ -134,7 +162,7 @@ export default function BeutyProducts() {
                             // style={{
                             //   boxShadow: "0 0  3px 1px rgba(0,0,0,0.3)",
                             // }}
-                            key={index}
+                            
                             className=" border-1 hover:scale-105 hover:opacity-80 text-gray-600 bg-white delay-200 duration-200 cursor-pointer border-gray-300 rounded-lg p-2  gap-3"
                           >
                             <div className="w-full mx-auto  bg-gray-200 rounded-lg">
@@ -207,7 +235,7 @@ export default function BeutyProducts() {
               >
                 {groceries.map((items, index) => {
                   return (
-                    <SwiperSlide>
+                    <SwiperSlide  key={index}>
                       <motion.div
                         initial={{ opacity: 0, y: 50 }}
                         whileInView={{ opacity: 1, y: 0 }}
@@ -219,7 +247,7 @@ export default function BeutyProducts() {
                             // style={{
                             //   boxShadow: "0 0  3px 1px rgba(0,0,0,0.3)",
                             // }}
-                            key={index}
+                           
                             className=" border-1 hover:scale-105 hover:opacity-80 text-gray-600 bg-white delay-200 duration-200 cursor-pointer border-gray-300 rounded-lg p-2  gap-3"
                           >
                             <div className="w-full mx-auto  bg-gray-200 rounded-lg">

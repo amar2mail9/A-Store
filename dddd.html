@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Love Proposal</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Arial', sans-serif;
+        }
+
+        /* Create a romantic gradient background */
+        body {
+            height: 100vh;
+            background: linear-gradient(to right, #ff7e5f, #feb47b); /* Soft gradient */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+            animation: gradientBackground 6s infinite alternate; /* Smooth background gradient animation */
+        }
+
+        /* Main container holding buttons */
+        .div_container {
+            text-align: center;
+            position: relative;
+        }
+
+        .btn {
+            background-color: #ff5f57;
+            color: white;
+            border: none;
+            cursor: pointer;
+            font-size: 20px;
+            font-weight: bold;
+            border-radius: 30px;
+            padding: 15px 30px;
+            box-shadow: 0 0 10px rgba(255, 94, 87, 0.5);
+            transition: transform 0.2s ease-in-out, box-shadow 0.3s ease;
+            position: relative;
+        }
+
+        /* "Yes" button specific styles */
+        #yesBtn {
+            background-color: #34c759;
+            box-shadow: 0 0 15px rgba(52, 199, 89, 0.6);
+        }
+
+        .btn:hover {
+            transform: scale(1.1);
+            box-shadow: 0 0 15px rgba(255, 94, 87, 0.9);
+        }
+
+        /* Showing the text after clicking "Yes" */
+        .showOnclick {
+            display: none;
+            position: fixed; /* Make it fixed to viewport */
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%); /* Proper centering */
+            background: rgba(255, 255, 255, 0.8);
+            padding: 40px;
+            border-radius: 30px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+            text-align: center;
+            animation: fadeIn 1s forwards;
+        }
+
+        /* Animating the text after the user clicks "Yes" */
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(-50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Smooth Gradient Background animation */
+        @keyframes gradientBackground {
+            0% {
+                background: linear-gradient(to right, #ff7e5f, #feb47b);
+            }
+            50% {
+                background: linear-gradient(to right, #f16f6f, #f8b0b8);
+            }
+            100% {
+                background: linear-gradient(to right, #ff7e5f, #feb47b);
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="div_container">
+        <button id="yesBtn" class="btn">Yes 🎉 💘</button>
+        <button id="btnNo" class="btn">No 💔 😭</button>
+    </div>
+
+    <!-- This div will show after clicking "Yes" -->
+    <div class="showOnclick">
+        <h1>Thanks For Accepting My Proposal</h1>
+    </div>
+
+    <script>
+        // Get the elements
+        const btnNo = document.getElementById('btnNo');
+        const yesBtn = document.getElementById('yesBtn');
+        const showOnclick = document.querySelector('.showOnclick');
+
+        // Show the "Thanks" message when "Yes" is clicked
+        yesBtn.addEventListener('click', () => {
+            showOnclick.style.display = 'block';  // Display thanks message
+        });
+
+        // Randomly move the "No" button on mouse hover
+        btnNo.addEventListener('mouseover', () => {
+            // Get random position values within the viewport (body)
+            const randomX = Math.floor(Math.random() * (window.innerWidth - btnNo.clientWidth));
+            const randomY = Math.floor(Math.random() * (window.innerHeight - btnNo.clientHeight));
+
+            // Apply random position to the "No" button
+            btnNo.style.position = 'absolute';
+            btnNo.style.left = `${randomX}px`;
+            btnNo.style.top = `${randomY}px`;
+        });
+    </script>
+</body>
+</html>
