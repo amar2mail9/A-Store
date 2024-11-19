@@ -5,11 +5,20 @@ import { Spinner } from "react-bootstrap";
 import { TbShoppingCartPlus } from "react-icons/tb";
 import { ProductContext } from "../../App";
 
+import { Swiper, SwiperSlide } from "swiper/react";
+
+// Import Swiper styles
+import "swiper/css";
+import "swiper/css/pagination";
+
+import { Pagination } from "swiper/modules";
+
 function SingleProduct() {
   const { handleClick } = useContext(ProductContext);
   const { id } = useParams();
   const [product, setProducts] = useState({});
   const [isLoading, setIsLoading] = useState(false);
+  const [thumbnailImage, setThumbnailImage] = useState("");
 
   const fetchProducts = async () => {
     setIsLoading(true);
@@ -38,13 +47,56 @@ function SingleProduct() {
         <section className="py-8 bg-gray-50 my-16 w-11/12 mx-auto rounded-xl shadow-lg md:py-16 antialiased">
           <div className="max-w-screen-xl px-4 mx-auto 2xl:px-0">
             <div className="lg:grid lg:grid-cols-2 lg:gap-8 xl:gap-16">
-              <div className="shrink-0 max-w-md lg:max-w-lg mx-auto">
-                <img
-                  className="w-full rounded-lg"
-                  src={product.thumbnail}
-                  alt={product.title}
-                />
+              {/* This is show on Lg screen */}
+              <div className="shrink-0 mx-auto hidden flex-row-reverse items-center gap-4 lg:flex ">
+                {/* Thumbnail image */}
+                <div className="w-96  flex items-center justify-center ">
+                  <img
+                    className="rounded-lg h-64  object-cover" // Ensure object-cover to maintain aspect ratio
+                    src={thumbnailImage || product.thumbnail} // Use the selected thumbnail image or default to the original thumbnail
+                    alt={product.title}
+                  />
+                </div>
+
+                {/* Gallery of additional images */}
+                <div className="flex gap-2 flex-col h-64 scrollbar-none overflow-x-hidden overflow-y-scroll">
+                  {product.images &&
+                    product.images.length > 0 &&
+                    product.images.map((image, i) => (
+                      <div
+                        key={i}
+                        onClick={() => setThumbnailImage(image)}
+                        className="cursor-pointer w-16"
+                      >
+                        <img
+                          src={image}
+                          alt={`product-image-${i}`}
+                          className="rounded-lg mt-2 h-16  object-cover" // Fix size and use object-cover
+                        />
+                      </div>
+                    ))}
+                </div>
               </div>
+
+              {/* This is show on my small screen */}
+              <Swiper
+                pagination={true}
+                modules={[Pagination]}
+                className="mySwiper lg:hidden block"
+              >
+                {product.images &&
+                  product.images.length > 0 &&
+                  product.images.map((image, i) => (
+                    <SwiperSlide className="flex items-center justify-center h-64">
+                      <img
+                        src={image}
+                        alt={`product-image-${i}`}
+                        className="rounded-lg mt-2 h-64  object-cover" // Fix size and use object-cover
+                      />
+                    </SwiperSlide>
+                  ))}
+              </Swiper>
+
               <div className="mt-6 sm:mt-8 lg:mt-0">
                 <h1 className="text-2xl font-semibold text-gray-800">
                   {product.title}
