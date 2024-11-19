@@ -82,7 +82,7 @@ export default function ProductsPage() {
             ) : products.length === 0 ? (
               <p>No Products Available</p>
             ) : (
-              <div className="grid lg:grid-cols-4 md:grid-cols-3 grid-cols-2 gap-6">
+              <div className="grid lg:grid-cols-4 md:grid-cols-3 sm:grid-cols-2 grid-cols-1 gap-6">
                 {products.map((items, index) => {
                   return (
                     <motion.div
@@ -90,63 +90,50 @@ export default function ProductsPage() {
                       initial={{ opacity: 0, y: 50 }}
                       whileInView={{ opacity: 1, y: 0 }}
                       transition={{ duration: 1 }}
-                      className="w-full shadow-lg"
                     >
-                      <Link to={`/products/${items.id}`}>
-                        <div key={index} className="bg-white p-2 rounded-lg">
-                          <div className="w-full mx-auto h-48 items-center flex bg-gray-200 rounded-lg">
-                            <img
-                              src={
-                                items.images &&
-                                items.thumbnail &&
-                                items.images[0]
-                              }
-                              alt=""
-                              className="w-full h-48 aspect-square"
-                            />
-                          </div>
-                          <div className="mt-4">
-                            {/* Product Category */}
-                            <h3 className="text-gray-600 text-xs tracking-widest title-font mb-1 uppercase">
-                              {items.category}
-                            </h3>
-
-                            {/* Product Title */}
-                            <h2 className="text-gray-800 title-font text-sm sm:text-base md:text-lg font-medium mb-2">
-                              {items.title}
-                            </h2>
-
-                            {/* Price Section */}
-                            <div className="mt-1 flex flex-col sm:flex-row gap-2 items-start sm:items-center">
-                              <span className="text-sm text-gray-600">
-                                Price:
-                              </span>
-
-                              {/* Price and Discount Section */}
-                              <div className="flex flex-col sm:flex-row gap-1 sm:gap-2 sm:items-center">
-                                {/* Original Price with Strikethrough */}
-                                <del className="text-gray-400 text-xs">
-                                  <span>${items.price.toFixed(2)}</span>
-                                </del>
-
-                                {/* Discount Percentage */}
-                                <label className="text-amber-500 text-xs font-semibold sm:text-sm">
-                                  {items.discountPercentage}% off
-                                </label>
-
-                                {/* Discounted Price */}
-                                <h4 className="text-green-600 text-sm sm:text-base font-medium">
-                                  $
-                                  {`${(
-                                    (items.price / 100) *
-                                    (100 - items.discountPercentage)
-                                  ).toFixed(2)} `}
-                                </h4>
-                              </div>
-                            </div>
-                          </div>
+                      <div className=" p-4  relative  bg-white rounded-lg shadow-lg shadow-slate-600 hover:scale-105 ">
+                        {/* discount section */}
+                        <div className="absolute top-[10%] left-0  shadow-md shadow-slate-4100  text-[.8rem] rounded-r-lg text-green-50 px-2 py-1  bg-green-600">
+                          <span className="  ">
+                            {items.discountPercentage}%
+                          </span>{" "}
+                          <sub className="text-blue-100">OFF</sub>
                         </div>
-                      </Link>
+
+                        <Link
+                          to={`/products/${items.id}`}
+                          className="xl:w-3/4  mx-auto h-48 block   rounded overflow-hidden "
+                        >
+                          <img
+                            alt={items.title}
+                            className="object-cover  object-center  "
+                            src={`${items.thumbnail}`}
+                          />
+                        </Link>
+                        <div className="mt-4">
+                          <h3 className="text-gray-500 text-xs tracking-widest title-font mb-1">
+                            {items.category}
+                          </h3>
+                          <h2 className="text-sky-700 title-font xl:text-lg text-md font-medium">
+                            {items.title}
+                          </h2>
+                          <small className="flex gap-1 items-center">
+                            <span className="text-sm font-semibold">
+                              Price:
+                            </span>
+                            <span className="text-rose-500">
+                              $<del>{items.price}</del>
+                            </span>
+                            <span className="text-green-600 text-sm">
+                              {(
+                                (items.price *
+                                  (100 - items.discountPercentage)) /
+                                100
+                              ).toFixed(2)}
+                            </span>
+                          </small>
+                        </div>
+                      </div>
                     </motion.div>
                   );
                 }) || <p>Products not Found</p>}

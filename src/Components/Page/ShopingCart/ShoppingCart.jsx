@@ -26,7 +26,7 @@ export default function ShoppingCart() {
           
           <div className="w-10/12 mx-auto py-5">
           <div className="flex items-center gap-5">
-            <h2 className="text-4xl text-gray-700 font-medium">Shopping Cart</h2>{" "}
+            <h2 className="md:text-4xl sm:text-2xl text-xl  text-gray-700 font-medium">Shopping Cart</h2>{" "}
             <span className="text-slate-600 font-semibold">({cartValue.length} Items)</span>
           </div>
           <hr className="mt-4"/>
