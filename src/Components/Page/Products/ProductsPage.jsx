@@ -82,7 +82,7 @@ export default function ProductsPage() {
             ) : products.length === 0 ? (
               <p>No Products Available</p>
             ) : (
-              <div className="grid lg:grid-cols-4 md:grid-cols-3 sm:grid-cols-2 grid-cols-1 gap-6">
+              <div className="grid  grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4  gap-8 p-3 my-4">
                 {products.map((items, index) => {
                   return (
                     <motion.div
@@ -91,39 +91,39 @@ export default function ProductsPage() {
                       whileInView={{ opacity: 1, y: 0 }}
                       transition={{ duration: 1 }}
                     >
-                      <div className=" p-4  relative  bg-white rounded-lg shadow-lg shadow-slate-600 hover:scale-105 ">
-                        {/* discount section */}
-                        <div className="absolute top-[10%] left-0  shadow-md shadow-slate-4100  text-[.8rem] rounded-r-lg text-green-50 px-2 py-1  bg-green-600">
-                          <span className="  ">
-                            {items.discountPercentage}%
-                          </span>{" "}
+                      <div className="p-4 relative flex items-center justify-center flex-col bg-white rounded-lg shadow-lg shadow-slate-600 hover:scale-105">
+                        {/* Discount section */}
+                        <div className="absolute top-[10%] left-0 shadow-md shadow-slate-4100 text-[.8rem] rounded-r-lg text-green-50 px-2 py-1 bg-green-600">
+                          <span>{items.discountPercentage}%</span>{" "}
                           <sub className="text-blue-100">OFF</sub>
                         </div>
 
                         <Link
                           to={`/products/${items.id}`}
-                          className="xl:w-3/4  mx-auto h-48 block   rounded overflow-hidden "
+                          className="mx-auto block rounded overflow-hidden"
                         >
                           <img
                             alt={items.title}
-                            className="object-cover  object-center  "
+                            className="w-48 h-48"
                             src={`${items.thumbnail}`}
                           />
                         </Link>
-                        <div className="mt-4">
+
+                        <div className="mt-4 flex flex-col justify-center items-center">
                           <h3 className="text-gray-500 text-xs tracking-widest title-font mb-1">
                             {items.category}
                           </h3>
-                          <h2 className="text-sky-700 title-font xl:text-lg text-md font-medium">
-                            {items.title}
+                          <h2 className="text-sky-700 title-font text-xs font-medium">
+                            {items.title.length >= 20
+                              ? `${items.title.slice(0, 20)}...`
+                              : items.title}
                           </h2>
+
                           <small className="flex gap-1 items-center">
                             <span className="text-sm font-semibold">
                               Price:
                             </span>
-                            <span className="text-rose-500">
-                              $<del>{items.price}</del>
-                            </span>
+                            <del className="text-rose-500">${items.price}</del>
                             <span className="text-green-600 text-sm">
                               {(
                                 (items.price *
@@ -136,7 +136,7 @@ export default function ProductsPage() {
                       </div>
                     </motion.div>
                   );
-                }) || <p>Products not Found</p>}
+                })}
               </div>
             )}
 
